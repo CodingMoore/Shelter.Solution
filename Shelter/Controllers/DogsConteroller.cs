@@ -49,5 +49,28 @@ namespace Shelter.Controllers
       return query.ToList();
     }
 
+    [HttpPost]
+    public void Post([FromBody] Dog dog)
+    {
+      _db.Dogs.Add(dog);
+      _db.SaveChanges();
+    }
+
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] Dog dog)
+    {
+      dog.DogId = id;
+      _db.Entry(dog).State = EntityState.Modified;
+      _db.SaveChanges();
+    }
+
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+      var dogToDelete = _db.Dogs.FirstOrDefault(entry => entry.DogId == id);
+      _db.Dogs.Remove(dogToDelete);
+      _db.SaveChanges();
+    }
+
   }
 }
