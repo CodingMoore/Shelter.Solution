@@ -11,37 +11,37 @@ namespace Shelter.Migrations
                 name: "Cats",
                 columns: table => new
                 {
-                    CatId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CatName = table.Column<string>(maxLength: 150, nullable: false),
-                    CatBreed = table.Column<string>(maxLength: 150, nullable: false),
-                    CatAge = table.Column<int>(nullable: false),
-                    CatSex = table.Column<string>(maxLength: 50, nullable: false)
+                    Name = table.Column<string>(maxLength: 150, nullable: false),
+                    Breed = table.Column<string>(maxLength: 150, nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    Sex = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cats", x => x.CatId);
+                    table.PrimaryKey("PK_Cats", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Dogs",
                 columns: table => new
                 {
-                    DogId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DogName = table.Column<string>(maxLength: 150, nullable: false),
-                    DogBreed = table.Column<string>(maxLength: 150, nullable: false),
-                    DogAge = table.Column<int>(nullable: false),
-                    DogSex = table.Column<string>(maxLength: 50, nullable: false)
+                    Name = table.Column<string>(maxLength: 150, nullable: false),
+                    Breed = table.Column<string>(maxLength: 150, nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    Sex = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dogs", x => x.DogId);
+                    table.PrimaryKey("PK_Dogs", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
                 table: "Cats",
-                columns: new[] { "CatId", "CatAge", "CatBreed", "CatName", "CatSex" },
+                columns: new[] { "Id", "Age", "Breed", "Name", "Sex" },
                 values: new object[,]
                 {
                     { 1, 6, "American Shorthair", "Alphred", "Female" },
@@ -53,7 +53,7 @@ namespace Shelter.Migrations
 
             migrationBuilder.InsertData(
                 table: "Dogs",
-                columns: new[] { "DogId", "DogAge", "DogBreed", "DogName", "DogSex" },
+                columns: new[] { "Id", "Age", "Breed", "Name", "Sex" },
                 values: new object[,]
                 {
                     { 1, 6, "Akita", "Higgins", "Male" },
