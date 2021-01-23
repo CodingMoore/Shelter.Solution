@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Shelter.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Shelter.Controllers
 {
@@ -14,6 +15,39 @@ namespace Shelter.Controllers
     public CatsController(ShelterContext db)
     {
       _db = db;
+    }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<Cat>> Get(int catId, string catName, int catAge, string catBreed, string catSex)
+    {
+      var query = _db.Cats.AsQueryable();
+
+      if (catId != 0)
+      {
+        query = query.Where(entry => entry.CatId == catId);
+      }
+
+      if (catName != null)
+      {
+        query = query.Where(entry => entry.CatName == catName);
+      }
+
+      if (catAge != 0)
+      {
+        query = query.Where(entry => entry.CatAge == catAge);
+      }
+
+      if (catName != null)
+      {
+        query = query.Where(entry => entry.CatBreed == catBreed);
+      }
+
+      if (catName != null)
+      {
+        query = query.Where(entry => entry.CatSex == catSex);
+      }
+
+      return query.ToList();
     }
 
   }
