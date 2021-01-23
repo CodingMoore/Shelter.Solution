@@ -49,6 +49,12 @@ namespace Shelter.Controllers
       return query.ToList();
     }
 
+    [HttpGet("{id}")]
+    public ActionResult<Dog> Get(int id)
+    {
+      return _db.Dogs.FirstOrDefault(entry => entry.DogId == id);
+    }
+
     [HttpPost]
     public void Post([FromBody] Dog dog)
     {
