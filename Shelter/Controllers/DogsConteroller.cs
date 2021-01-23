@@ -36,12 +36,12 @@ namespace Shelter.Controllers
         query = query.Where(entry => entry.DogAge == dogAge);
       }
 
-      if (dogName != null)
+      if (dogBreed != null)
       {
         query = query.Where(entry => entry.DogBreed == dogBreed);
       }
 
-      if (dogName != null)
+      if (dogSex != null)
       {
         query = query.Where(entry => entry.DogSex == dogSex);
       }

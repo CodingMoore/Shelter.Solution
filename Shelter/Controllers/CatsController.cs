@@ -37,12 +37,12 @@ namespace Shelter.Controllers
         query = query.Where(entry => entry.CatAge == catAge);
       }
 
-      if (catName != null)
+      if (catBreed != null)
       {
         query = query.Where(entry => entry.CatBreed == catBreed);
       }
 
-      if (catName != null)
+      if (catSex != null)
       {
         query = query.Where(entry => entry.CatSex == catSex);
       }
