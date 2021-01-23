@@ -16,7 +16,7 @@ namespace Shelter.Models
         {
             builder.Entity<Cat>()
                 .HasData(
-                    new Cat { CatId = 1, CatName = , CatAge = , CatBreed = , CatSex = },
+                    new Cat { CatId = 1, CatName = Alphred, CatAge = , CatBreed = , CatSex = },
                     new Cat { CatId = 2, CatName = , CatAge = , CatBreed = , CatSex = },
                     new Cat { CatId = 3, CatName = , CatAge = , CatBreed = , CatSex = },
                     new Cat { CatId = 4, CatName = , CatAge = , CatBreed = , CatSex = },
