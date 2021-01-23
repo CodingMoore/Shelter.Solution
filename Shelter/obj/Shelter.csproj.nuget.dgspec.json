@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj": {}
+    "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\Shelter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj": {
+    "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\Shelter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj",
+        "projectUniqueName": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\Shelter.csproj",
         "projectName": "Shelter",
-        "projectPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj",
+        "projectPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\Shelter.csproj",
         "packagesPath": "C:\\Users\\Randel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\obj\\",
+        "outputPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
