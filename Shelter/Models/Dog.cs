@@ -4,18 +4,18 @@ namespace Shelter.Models
 {
   public class Dog
   {
-    public int DogId { get; set; }
+    public int Id { get; set; }
     [Required]
     [StringLength (150)]
-    public string DogName { get; set; }
+    public string Name { get; set; }
     [Required]
     [StringLength (150)]
-    public string DogBreed { get; set; }
+    public string Breed { get; set; }
     [Required]
-    public int DogAge { get; set; }
+    public int Age { get; set; }
     [Required]
     [StringLength (50)]
-    public string DogSex { get; set; }
+    public string Sex { get; set; }
 
   }
 }

@@ -4,18 +4,18 @@ namespace Shelter.Models
 {
   public class Cat
   {
-    public int CatId { get; set; }
+    public int Id { get; set; }
     [Required]
     [StringLength (150)]
-    public string CatName { get; set; }
+    public string Name { get; set; }
     [Required]
     [StringLength (150)]
-    public string CatBreed { get; set; }
+    public string Breed { get; set; }
     [Required]
-    public int CatAge { get; set; }
+    public int Age { get; set; }
     [Required]
     [StringLength (50)]
-    public string CatSex { get; set; }
+    public string Sex { get; set; }
 
   }
 }

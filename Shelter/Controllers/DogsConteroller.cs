@@ -17,33 +17,33 @@ namespace Shelter.Controllers
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Dog>> Get(int dogId, string dogName, int dogAge, string dogBreed, string dogSex)
+    public ActionResult<IEnumerable<Dog>> Get(int id, string name, int age, string breed, string sex)
     {
       var query = _db.Dogs.AsQueryable();
 
-      if (dogId != 0)
+      if (id != 0)
       {
-        query = query.Where(entry => entry.DogId == dogId);
+        query = query.Where(entry => entry.Id == id);
       }
 
-      if (dogName != null)
+      if (name != null)
       {
-        query = query.Where(entry => entry.DogName == dogName);
+        query = query.Where(entry => entry.Name == name);
       }
 
-      if (dogAge != 0)
+      if (age != 0)
       {
-        query = query.Where(entry => entry.DogAge == dogAge);
+        query = query.Where(entry => entry.Age == age);
       }
 
-      if (dogBreed != null)
+      if (breed != null)
       {
-        query = query.Where(entry => entry.DogBreed == dogBreed);
+        query = query.Where(entry => entry.Breed == breed);
       }
 
-      if (dogSex != null)
+      if (sex != null)
       {
-        query = query.Where(entry => entry.DogSex == dogSex);
+        query = query.Where(entry => entry.Sex == sex);
       }
 
       return query.ToList();
@@ -52,7 +52,7 @@ namespace Shelter.Controllers
     [HttpGet("{id}")]
     public ActionResult<Dog> Get(int id)
     {
-      return _db.Dogs.FirstOrDefault(entry => entry.DogId == id);
+      return _db.Dogs.FirstOrDefault(entry => entry.Id == id);
     }
 
     [HttpPost]
@@ -65,7 +65,7 @@ namespace Shelter.Controllers
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Dog dog)
     {
-      dog.DogId = id;
+      dog.Id = id;
       _db.Entry(dog).State = EntityState.Modified;
       _db.SaveChanges();
     }
@@ -73,7 +73,7 @@ namespace Shelter.Controllers
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
-      var dogToDelete = _db.Dogs.FirstOrDefault(entry => entry.DogId == id);
+      var dogToDelete = _db.Dogs.FirstOrDefault(entry => entry.Id == id);
       _db.Dogs.Remove(dogToDelete);
       _db.SaveChanges();
     }

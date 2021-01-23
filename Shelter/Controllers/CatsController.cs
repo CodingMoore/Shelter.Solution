@@ -18,33 +18,33 @@ namespace Shelter.Controllers
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Cat>> Get(int catId, string catName, int catAge, string catBreed, string catSex)
+    public ActionResult<IEnumerable<Cat>> Get(int id, string name, int age, string breed, string sex)
     {
       var query = _db.Cats.AsQueryable();
 
-      if (catId != 0)
+      if (id != 0)
       {
-        query = query.Where(entry => entry.CatId == catId);
+        query = query.Where(entry => entry.Id == id);
       }
 
-      if (catName != null)
+      if (name != null)
       {
-        query = query.Where(entry => entry.CatName == catName);
+        query = query.Where(entry => entry.Name == name);
       }
 
-      if (catAge != 0)
+      if (age != 0)
       {
-        query = query.Where(entry => entry.CatAge == catAge);
+        query = query.Where(entry => entry.Age == age);
       }
 
-      if (catBreed != null)
+      if (breed != null)
       {
-        query = query.Where(entry => entry.CatBreed == catBreed);
+        query = query.Where(entry => entry.Breed == breed);
       }
 
-      if (catSex != null)
+      if (sex != null)
       {
-        query = query.Where(entry => entry.CatSex == catSex);
+        query = query.Where(entry => entry.Sex == sex);
       }
 
       return query.ToList();
@@ -53,7 +53,7 @@ namespace Shelter.Controllers
     [HttpGet("{id}")]
     public ActionResult<Cat> Get(int id)
     {
-      return _db.Cats.FirstOrDefault(entry => entry.CatId == id);
+      return _db.Cats.FirstOrDefault(entry => entry.Id == id);
     }
 
     [HttpPost]
@@ -66,7 +66,7 @@ namespace Shelter.Controllers
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Cat cat)
     {
-      cat.CatId = id;
+      cat.Id = id;
       _db.Entry(cat).State = EntityState.Modified;
       _db.SaveChanges();
     }
@@ -74,7 +74,7 @@ namespace Shelter.Controllers
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
-      var catToDelete = _db.Cats.FirstOrDefault(entry => entry.CatId == id);
+      var catToDelete = _db.Cats.FirstOrDefault(entry => entry.Id == id);
       _db.Cats.Remove(catToDelete);
       _db.SaveChanges();
     }
