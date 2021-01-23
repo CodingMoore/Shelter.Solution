@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Randel\\Epicodus\\c#_projects\\ShelterApi.Solution\\ShelterApi\\ShelterApi.csproj": {}
+    "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Randel\\Epicodus\\c#_projects\\ShelterApi.Solution\\ShelterApi\\ShelterApi.csproj": {
+    "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Randel\\Epicodus\\c#_projects\\ShelterApi.Solution\\ShelterApi\\ShelterApi.csproj",
-        "projectName": "ShelterApi",
-        "projectPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\ShelterApi.Solution\\ShelterApi\\ShelterApi.csproj",
+        "projectUniqueName": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj",
+        "projectName": "Shelter",
+        "projectPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj",
         "packagesPath": "C:\\Users\\Randel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\ShelterApi.Solution\\ShelterApi\\obj\\",
+        "outputPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -50,11 +50,19 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

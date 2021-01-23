@@ -1,0 +1,14 @@
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.csprojAssemblyReference.cache
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.csproj.CoreCompileInputs.cache
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.RazorAssemblyInfo.cache
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.RazorAssemblyInfo.cs
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.AssemblyInfoInputs.cache
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.AssemblyInfo.cs
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\bin\Debug\netcoreapp2.2\Shelter.deps.json
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\bin\Debug\netcoreapp2.2\Shelter.runtimeconfig.json
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\bin\Debug\netcoreapp2.2\Shelter.runtimeconfig.dev.json
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\bin\Debug\netcoreapp2.2\Shelter.dll
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\bin\Debug\netcoreapp2.2\Shelter.pdb
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.RazorTargetAssemblyInfo.cache
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.dll
+C:\Users\Randel\Epicodus\c#_projects\Shelter.Solution\Shelter\obj\Debug\netcoreapp2.2\Shelter.pdb
