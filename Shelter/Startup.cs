@@ -22,6 +22,8 @@ namespace Shelter
             services.AddDbContext<ShelterContext>(opt =>
                 opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -36,6 +38,13 @@ namespace Shelter
             }
 
             app.UseMvc();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
         }
     }
 }
