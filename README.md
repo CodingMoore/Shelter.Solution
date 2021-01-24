@@ -154,9 +154,12 @@ You can now type the follow code to launch the program...
 
 The API should be available using a web browser at URL: localhost:5000.
 
-## **Swagger**
-
 ## **API Documentation**
+
+__Swagger__
+To access the API through "Swagger", navigate to http://localhost:5000/swagger
+
+
 
 ## **Planned Features**
 No new features are planned at this time.
