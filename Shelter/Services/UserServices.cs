@@ -6,10 +6,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebApi.Entities;
-using WebApi.Helpers;
+using Shelter.Entities;
+using Shelter.Helpers;
 
-namespace WebApi.Services
+namespace Shelter.Services
 {
   public interface IUserService
   {
@@ -19,21 +19,21 @@ namespace WebApi.Services
 
   public class UserService : IUserService
   {
-    private List<User> _user = new List<User>
+    private List<User> _users = new List<User>
     {
     new User  { Id = 1, Username = "test", Password = "test" }
     };
 
     private readonly AppSettings _appSettings;
 
-    public UserServices(IOptions<AppSettings> appSettings)
+    public UserService(IOptions<AppSettings> appSettings)
     {
       _appSettings = appSettings.Value;
     }
 
     public User Authenticate(string username, string password)
     {
-      var user = _users.SinglOrDefault(x => x.Username == username && x.Password == password);
+      var user = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
 
       if (user == null)
       {
@@ -44,15 +44,15 @@ namespace WebApi.Services
       var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
       var tokenDescriptor = new SecurityTokenDescriptor
       {
-        Subject = new ClaminsIdentity(new Claim[]
+        Subject = new ClaimsIdentity(new Claim[]
         {
           new Claim(ClaimTypes.Name, user.Id.ToString())
-        });
+        }),
         Expires = DateTime.UtcNow.AddHours(24),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
-      var token = TokenHandler.CreateToken(tokenDescriptor);
-      User.Token = TokenHandler.WriteToken(token);
+      var token = tokenHandler.CreateToken(tokenDescriptor);
+      user.Token = tokenHandler.WriteToken(token);
 
       user.Password = null;
 
@@ -69,8 +69,4 @@ namespace WebApi.Services
     }
 
   }
-
-
-
-
 }

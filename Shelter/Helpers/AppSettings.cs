@@ -1,4 +1,4 @@
-namespace WebApi.Helpers
+namespace Shelter.Helpers
 {
   public class AppSettings
   {

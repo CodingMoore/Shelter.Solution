@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using WebApi.Services;  //This doesn't exist yet
-using WebApi.Entities;  //This doesn't exist yet
+using Shelter.Services;  //This doesn't exist yet
+using Shelter.Entities;  //This doesn't exist yet
 
-namespace WebApi.Controllers
+namespace Shelter.Controllers
 {
   [Authorize]
   [ApiController]

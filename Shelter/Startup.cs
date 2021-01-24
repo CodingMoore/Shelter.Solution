@@ -10,10 +10,6 @@ using Microsoft.IdentityModel.Tokens; //JWT CODE!!!
 using System.Text; //JWT CODE!!!
 using Shelter.Helpers;  //JWT CODE!!!
 using Shelter.Services;  //JWT CODE!!!
-using Shelter.Models;  //JWT CODE!!!
-
-
-
 
 namespace Shelter
 {

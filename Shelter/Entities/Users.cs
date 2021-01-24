@@ -1,4 +1,4 @@
-namespace WebApi.Entities
+namespace Shelter.Entities
 {
   public class User
   {
