@@ -50,7 +50,26 @@ namespace WebApi.Entities
     // public string LastName { get; set; } //Optional?
     public string Username { get; set; }
     public string Password { get; set; }
+    public string Role { get; set; } //Optional if you want to have user rolls?
     public string Token { get; set; }
   }
 }
+```
+
+3. Create a Helpers directory and an AppSettings.cs file (ProjectName.Solution/ProjectName/Helpers/AppSettings.cs) and add the following code...
+
+```
+namespace WebApi.Helpers
+{
+  public class AppSettings
+  {
+    public string Secret { get; set; }
+  }
+}
+```
+
+4. Create a Services directory and a UserServices.cs file (ProjectName.Solution/ProjectName/Services/UserServices.cs) and add the following code...
+
+```
+
 ```
