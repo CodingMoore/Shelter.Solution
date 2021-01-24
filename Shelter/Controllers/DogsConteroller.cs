@@ -3,11 +3,13 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Shelter.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shelter.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
+  [Authorize]
   public class DogsController : ControllerBase
   {
     private ShelterContext _db;
@@ -16,6 +18,7 @@ namespace Shelter.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public ActionResult<IEnumerable<Dog>> Get(int id, string name, int age, string breed, string sex)
     {
@@ -49,6 +52,7 @@ namespace Shelter.Controllers
       return query.ToList();
     }
 
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public ActionResult<Dog> Get(int id)
     {
