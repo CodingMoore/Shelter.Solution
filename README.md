@@ -160,7 +160,6 @@ __Swagger__
 To access the API through "Swagger", navigate to http://localhost:5000/swagger
 
 
-
 ## **Planned Features**
 No new features are planned at this time.
 
