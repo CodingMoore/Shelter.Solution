@@ -8,6 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer; //JWT CODE!!!
 using Microsoft.IdentityModel.Tokens; //JWT CODE!!!
 using System.Text; //JWT CODE!!!
+using Shelter.Helpers;  //JWT CODE!!!
+using Shelter.Services;  //JWT CODE!!!
+using Shelter.Models;  //JWT CODE!!!
+
+
+
 
 namespace Shelter
 {
@@ -58,16 +64,15 @@ namespace Shelter
                 app.UseHsts();
             }
 
+
+            app.UseAuthentication(); //JWT CODE!!(Before "app.UseMvc());
+            app.UseMvc();
             app.UseSwagger();
 
             app.UseSwaggerUI(c => 
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
-            app.UseAuthentication(); //JWT CODE!!(Before "app.UseMvc());
-
-            app.UseMvc();
 
             
         }
