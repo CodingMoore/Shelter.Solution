@@ -5,11 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shelter.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer; //JWT CODE!!!
-using Microsoft.IdentityModel.Tokens; //JWT CODE!!!
-using System.Text; //JWT CODE!!!
-using Shelter.Helpers;  //JWT CODE!!!
-using Shelter.Services;  //JWT CODE!!!
+using Microsoft.AspNetCore.Authentication.JwtBearer; //NEW JWT CODE!!!
+using Microsoft.IdentityModel.Tokens; //NEW JWT CODE!!!
+using System.Text; //NEW JWT CODE!!!
+using Shelter.Helpers;  //NEW JWT CODE!!!
+using Shelter.Services;  //NEW JWT CODE!!!
 
 namespace Shelter
 {
@@ -25,7 +25,7 @@ namespace Shelter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen();  //Only if you are using Swagger
-            services.AddCors(); // Optional? maybe?
+            services.AddCors(); // Only if you are using CORS
             services.AddDbContext<ShelterContext>(opt =>
                 opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -33,7 +33,7 @@ namespace Shelter
             var appSettingsSection = Configuration.GetSection("AppSettings"); // NEW CODE
             services.Configure<AppSettings>(appSettingsSection); // NEW CODE
 
-            //JWT CODE BELOW/////////
+            //JWT CODE BELOW/////////////////////////////////////////////
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
@@ -42,7 +42,7 @@ namespace Shelter
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
+            .AddJwtBearer(x =>  // I don't really understand what these boolian settings are doing and thus I don't know if they should be changed.
             {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
@@ -54,9 +54,9 @@ namespace Shelter
                     ValidateAudience = false
                 };
             });
-            //JWT CODE ABOVE/////////
+            //NEW JWT CODE ABOVE////////////////////////////////////////////
 
-            services.AddScoped<IUserService, UserService>(); // NEW
+            services.AddScoped<IUserService, UserService>(); // NEW CODE
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -77,12 +77,12 @@ namespace Shelter
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseCors(x => x // Optional? maybe?
+            app.UseCors(x => x // Only if you are using CORS
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            app.UseAuthentication(); //JWT CODE!!(Before "app.UseMvc());
+            app.UseAuthentication(); //NEW JWT CODE!!(Before "app.UseMvc());
             app.UseMvc();
 
         }

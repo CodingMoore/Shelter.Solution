@@ -1,16 +1,27 @@
+This Guide is assuming that you have already built out an API (probably using the "dotnet new webapi --framework netcoreapp2.2" command).  To add JSON Web Token Support, follow the steps below.  
+
+Please note that in this example, the Uername and Password are not being stored in a secure Hash in a database, but written in plain text in the "UserServices.cs" file.  __This is probably a terrible apractice!__
+
+Also note that some of these files are new, and all of the file code is written out.  Other files may only show modified code or show comments where new code is added.
+
+Also also note, __"Shelter"__ is the name of the project, and thus the standard namespace for files.
+
+Lastly, this was made following this guide: https://jasonwatmore.com/post/2018/08/14/aspnet-core-21-jwt-authentication-tutorial-with-example-api#users-controller-cs
+
+
 1. Create a UsersController.cs file (ProjectName.Solution/ProjectName/Controllers/UsersController.cs) and add the following code...
 
 ```
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using WebApi.Services;  //This doesn't exist yet
-using WebApi.Entities;  //This doesn't exist yet
+using Shelter.Services;  //This doesn't exist yet
+using Shelter.Entities;  //This doesn't exist yet
 
-namespace WebApi.Controllers
+namespace Shelter.Controllers
 {
   [Authorize]
   [ApiController]
-  [Route("[controller]")]
+  [Route("/api/[controller]")]
   public class UsersController : ControllerBase
   {
     private IUserService _userService;  //IUserService does not exist yet.
@@ -36,12 +47,12 @@ namespace WebApi.Controllers
 }
 ```
 
-2. Create an Entity directory and User.cs file (ProjectName.Solution/ProjectName/Entities/User.cs) and add the following code...
+2. Create an Entities directory and User.cs file (ProjectName.Solution/ProjectName/Entities/User.cs) and add the following code...
 
 note: FirstName and LastName are probably optional and I have commented them out for this exercise.
 
 ```
-namespace WebApi.Entities
+namespace Shelter.Entities
 {
   public class User
   {
@@ -59,7 +70,7 @@ namespace WebApi.Entities
 3. Create a Helpers directory and an AppSettings.cs file (ProjectName.Solution/ProjectName/Helpers/AppSettings.cs) and add the following code...
 
 ```
-namespace WebApi.Helpers
+namespace Shelter.Helpers
 {
   public class AppSettings
   {
@@ -79,10 +90,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebApi.Entities;
-using WebApi.Helpers;
+using Shelter.Entities;
+using Shelter.Helpers;
 
-namespace WebApi.Services
+namespace Shelter.Services
 {
   public interface IUserService
   {
@@ -145,7 +156,7 @@ namespace WebApi.Services
 }
 ```
 
-5. Add the following "AppSettings" code to the top of your appsettings.json file.  __You need to change the "Secret" String to something else.__
+5. __Add__ the following "AppSettings" code to the top of your appsettings.json file.  __You need to change the "Secret" String to something else.__
 
 ```
 {
@@ -153,7 +164,7 @@ namespace WebApi.Services
     "Secret": "THIS IS USED TO SIGN IN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
   },
  
-  ...
+  ... 
 
 }
 ```
@@ -168,11 +179,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shelter.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer; //JWT CODE!!!
-using Microsoft.IdentityModel.Tokens; //JWT CODE!!!
-using System.Text; //JWT CODE!!!
-using Shelter.Helpers;  //JWT CODE!!!
-using Shelter.Services;  //JWT CODE!!!
+using Microsoft.AspNetCore.Authentication.JwtBearer; //NEW JWT CODE!!!
+using Microsoft.IdentityModel.Tokens; //NEW JWT CODE!!!
+using System.Text; //NEW JWT CODE!!!
+using Shelter.Helpers;  //NEW JWT CODE!!!
+using Shelter.Services;  //NEW JWT CODE!!!
 
 namespace Shelter
 {
@@ -188,7 +199,7 @@ namespace Shelter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen();  //Only if you are using Swagger
-            services.AddCors(); // Optional? maybe?
+            services.AddCors(); // Only if you are using CORS
             services.AddDbContext<ShelterContext>(opt =>
                 opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -196,7 +207,7 @@ namespace Shelter
             var appSettingsSection = Configuration.GetSection("AppSettings"); // NEW CODE
             services.Configure<AppSettings>(appSettingsSection); // NEW CODE
 
-            //JWT CODE BELOW/////////
+            //JWT CODE BELOW/////////////////////////////////////////////
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
@@ -205,7 +216,7 @@ namespace Shelter
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
+            .AddJwtBearer(x =>  // I don't really understand what these boolian settings are doing and thus I don't know if they should be changed.
             {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
@@ -217,9 +228,9 @@ namespace Shelter
                     ValidateAudience = false
                 };
             });
-            //JWT CODE ABOVE/////////
+            //NEW JWT CODE ABOVE////////////////////////////////////////////
 
-            services.AddScoped<IUserService, UserService>(); // NEW
+            services.AddScoped<IUserService, UserService>(); // NEW CODE
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -240,12 +251,12 @@ namespace Shelter
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseCors(x => x // Optional? maybe?
+            app.UseCors(x => x // Only if you are using CORS
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            app.UseAuthentication(); //JWT CODE!!(Before "app.UseMvc());
+            app.UseAuthentication(); //NEW JWT CODE!!(Before "app.UseMvc());
             app.UseMvc();
 
         }
@@ -254,4 +265,75 @@ namespace Shelter
 }
 ```
 
-7. Add [Authorize]/[AllowAnonymous] tags to class controllers
+7. Add [Authorize]/[AllowAnonymous] tags to class controllers where you want to restrict or allow access to CRUD functionality.
+
+8. Save and Run (Cross your fingers too)
+
+9. Test your JWT by opening Postman and sending a GET request to an unrestricted API route to make sure things are sill connecting.
+
+10. Next send a POST request and verify that you receive a "401 unauthorized" error.  This means your Authorization class/route tags are working.
+
+11. In Postman, go to your Authorization URL.  In my case, it is  [http://localhost:5000/api/users/authenticate] since my UsersController.cs looks like this...
+
+```
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Shelter.Services; 
+using Shelter.Entities; 
+
+namespace Shelter.Controllers
+{
+  [Authorize]
+  [ApiController]
+  [Route("/api/[controller]")] //referencing this for our authentication request
+  public class UsersController : ControllerBase
+  {
+    private IUserService _userService;
+    public UsersController(IUserService userService)
+    {
+      _userService = userService;
+    }
+    
+    [AllowAnonymous]
+    [HttpPost("authenticate")]
+    public IActionResult Authenticate([FromBody]User userParam) // referencing this for our authentication request
+    {
+      var user = _userService.Authenticate(userParam.Username, userParam.Password);
+
+      if (user == null)
+      {
+        return BadRequest(new { message = "Username or password is incorrect"});
+      }
+      return Ok(user);
+    }
+    ...
+
+```
+
+Set request type to POST and put the following in the Body and send the request. The Username and Password are both set to "test" in this example, and can be changed in the UserServices.cs file.  However you SHOULD find a way to store these safely hashed in your database.  I dunno how to do that yet :(
+
+```
+    {
+        "Username": "test",
+        "Password": "test"
+    }
+```
+
+You should receive a reply that contains your token, like.....
+
+```
+{
+    "id": 1,
+    "username": "test",
+    "password": null,
+    "role": null,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE2MTE1MTMwNDMsImV4cCI6MTYxMTU5OTQ0MywiaWF0IjoxNjExNTEzMDQzfQ.8xlwNGS_B1by6CxLebbpFtzZBRFU8aD7IC-T9_t_9Qk"
+}
+```
+
+12. Click on "Authorization" in Postman (to the left of "Body") and use the dropdown menu to change the Type to "Bearer Token".
+Copy the token from your authorization request (without quotes), into the Token input box.
+
+13. Test to see if the token is working by submitting a POST, PUT, or Delete, request.  In theory, you should be able to do these CRUD actions now.  You can add or remove the JWT Token by switching between the "No Auth" and the "Bearer Token" Types in the Authorization dropdown menu.
+
+14. Rejoice
