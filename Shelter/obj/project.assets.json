@@ -12409,11 +12409,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\Shelter.csproj",
+      "projectUniqueName": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj",
       "projectName": "Shelter",
-      "projectPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\Shelter.csproj",
+      "projectPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\Shelter.csproj",
       "packagesPath": "C:\\Users\\Randel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\shelter\\obj\\",
+      "outputPath": "C:\\Users\\Randel\\Epicodus\\c#_projects\\Shelter.Solution\\Shelter\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
