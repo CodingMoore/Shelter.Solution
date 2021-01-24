@@ -7,7 +7,7 @@ namespace Shelter.Controllers
 {
   [Authorize]
   [ApiController]
-  [Route("[controller]")]
+  [Route("/api/[controller]")]
   public class UsersController : ControllerBase
   {
     private IUserService _userService;  //IUserService does not exist yet.

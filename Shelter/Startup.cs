@@ -85,7 +85,7 @@ namespace Shelter
             app.UseAuthentication(); //JWT CODE!!(Before "app.UseMvc());
             app.UseMvc();
 
-            
         }
+        
     }
 }

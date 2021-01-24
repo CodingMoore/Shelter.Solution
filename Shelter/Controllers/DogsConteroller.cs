@@ -9,7 +9,7 @@ namespace Shelter.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
+  [Authorize]
   public class DogsController : ControllerBase
   {
     private ShelterContext _db;
@@ -18,7 +18,7 @@ namespace Shelter.Controllers
       _db = db;
     }
 
-    // [AllowAnonymous]
+    [AllowAnonymous]
     [HttpGet]
     public ActionResult<IEnumerable<Dog>> Get(int id, string name, int age, string breed, string sex)
     {
@@ -52,7 +52,7 @@ namespace Shelter.Controllers
       return query.ToList();
     }
 
-    // [AllowAnonymous]
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public ActionResult<Dog> Get(int id)
     {
