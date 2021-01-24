@@ -10,7 +10,7 @@ namespace Shelter.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  [Authorize]  //JWT CODE!!!
+  // [Authorize]  //JWT CODE!!!
   public class CatsController : ControllerBase
   {
     private ShelterContext _db;
@@ -19,7 +19,7 @@ namespace Shelter.Controllers
       _db = db;
     }
 
-    [AllowAnonymous]  //JWT CODE!!!
+    // [AllowAnonymous]  //JWT CODE!!!
     [HttpGet]
     public ActionResult<IEnumerable<Cat>> Get(int id, string name, int age, string breed, string sex)
     {
@@ -53,7 +53,7 @@ namespace Shelter.Controllers
       return query.ToList();
     }
 
-    [AllowAnonymous] //JWT CODE!!!
+    // [AllowAnonymous] //JWT CODE!!!
     [HttpGet("{id}")]
     public ActionResult<Cat> Get(int id)
     {
