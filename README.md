@@ -1,10 +1,10 @@
 # **Shelter.Solution**
 Project Initiated: 2021-01-23<br>
-Updated: 2021-01-23
+Updated: 2021-01-24
 
 ## **Project Description**
 
-This project is an exercise in creating an ASP.NET Core API with database integration using multiple classes, and Full CRUD implementation.
+This project is an exercise in creating an ASP.NET Core API with database integration using multiple classes and Full CRUD implementation.  This project also includes CORS integration, Swagger Documentation, and JSON Web Token (JWT) authentication for Create, Update, and Delete functionality.
 
 Coding Prompt:
 
@@ -22,6 +22,7 @@ You have the freedom to build out your API as you wish. At the very least, your 
 * Code Editor like [Visual Studio Code](https://code.visualstudio.com/)
 * MySQL Community Server
 * MySQL Workbench
+* Postman (for JWT authentication)
 
 
 ## **Installation Instructions**
@@ -154,12 +155,133 @@ You can now type the follow code to launch the program...
 
 The API should be available using a web browser at URL: localhost:5000.
 
+## **PostMan**
+
+For full API functionality with JWT, you will want to use a application like Postman to retreive and return an authentication token.  You can download and install the full Postman app for your respective OS using the following link.
+
+[Postman](https://www.postman.com/downloads/)
+
 ## **API Documentation**
 
+As this API project is deaulted to using authentication, a web browser will only allow you to access HttpGet routes.  To access all routes and full CRUD functionality, please use Postman for site navigation.
+
+__JSON Web Token (JWT)__
+To access full CRUD functionality beyond HttpGet requests, you will need to be authenticated by ther API and receive an JWT.
+
+1. Launch Postman and start a new API request.
+2. Enter <code>http://localhost:5000/api/users/authenticate</code> in the "Enter Request URL" field.
+3. Set request type to "POST".
+4. Click on the "Body" tab under the URL field and enter the following into the text box.
+
+```
+    {
+        "Username": "Flash",
+        "Password": "Thunder"
+    }
+```
+5. Press "Send", and you should recieve a reply from the server that looks similar to the following...
+
+```
+{
+    "id": 1,
+    "username": "test",
+    "password": null,
+    "role": null,
+    "token": "eyJhbGciOiJIUzI2NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE2MTE1MTMwNDMsImv4cCI6MTYxMTU5OTQ0MywiaWF0IjoxMjExNTEzMDQzfQ.8xlwNGS_B1by6CxLebbpFtzZBRFU8aD7IC-T9_t_9Qk"
+}
+```
+6. Click on "Authorization" in Postman (to the left of "Body") and use the dropdown menu to change the Type to "Bearer Token".
+
+7. Copy the token from your authorization request (without quotes), into the Token input box.
+
+This authentication token should be valid for 24 hours.  You now have access to all CRUD functionality.
+
 __Swagger__
-To access the API through "Swagger", navigate to http://localhost:5000/swagger
 
+While only HttpGet requests will be sucessful, you can explore Swagger Documentation by running the API by typing <code> dotnet run</code> in your terminal, and then navigating to http://localhost:5000/swagger using your web browser.
 
+__CORS__
+
+CORS (Cross Origin Resource Sharing) has been enabled on this project without restrictions.  If this API were deployed, it would allow users outside the API's domain to send requests.  While this is helpful for allowing it's use by the genearl public, it does reduce the security level of the API.
+
+[Microsoft CORS Documentation:](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-5.0)
+
+--Cross Origin Resource Sharing (CORS):
+
+* Is a W3C standard that allows a server to relax the same-origin policy.
+* Is __not__ a security feature, __CORS relaxes security__. An API is not safer by allowing CORS. For more information, see How CORS works.
+* Allows a server to explicitly allow some cross-origin requests while rejecting others.
+* Is safer and more flexible than earlier techniques, such as JSONP.
+
+<hr>
+
+## __Endpoints__
+
+Base URL: http://localhost:5000/
+
+HTTP Request Structure:
+
+```
+GET..../api/{component}
+POST.../api/{component}
+GET..../api/{component}/{id}
+PUT..../api/{component}/{id}
+DELETE./api/{component}/{id}
+
+```
+{component} can be either "cats" or "dogs".
+
+Example 1: GET /api/cats/
+Example 2: GET /api/dogs/5
+
+__Path Parameters__
+
+|Parameter|Type|Default|Required|Description|
+|:--------|:------|:------|:-------|:---------------------------|
+| id      |int    | none  | false  | Return match by unique ID. |
+| name    |string | none  | true   | Return matches by name.    |
+| breed   |string | none  | true   | Return matches by breed.   |
+| age     |int    | none  | true   | Return matches by age.     |
+| sex     |string | none  | true   | Return matches by sex.     |
+
+__Example Query__
+
+http://localhost:/api/cat?breed=sphinx&&sex=male
+
+__Example JSON Response__
+
+```
+[  
+  {
+    "id": 3,
+    "name": "Hans",
+    "breed": "Sphinx",
+    "age": 8,
+    "sex": "Male"
+  },
+  {
+    "id": 5,
+    "name": "Heathrow",
+    "breed": "Sphinx",
+    "age": 8,
+    "sex": "Male"
+  }
+]  
+```  
+
+__Example POST/PUT__
+
+POST  Http://localhost:5000/api/dogs/
+
+Body: As IDs are generated by the database, do not include them in POST or PUT request bodies.  See example HTTP body below.
+```
+  {
+    "name": "Unfried",
+    "breed": "Bombay",
+    "age": 7,
+    "sex": "Male"
+  }
+```
 ## **Planned Features**
 No new features are planned at this time.
 
@@ -173,12 +295,10 @@ There are no known bugs
 * Identity
 * Git
 * MySQL
-* CSS
-* HMTL
-* Bootstrap
-* Razor
 * dotnet script, REPL
 * Swagger (Swashbuckle)
+* JSON Web Token Authentication
+* CORS
   
 ## **Authors and Contributors**
 Authored by: Randel Moore

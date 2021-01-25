@@ -21,7 +21,7 @@ namespace Shelter.Services
   {
     private List<User> _users = new List<User>
     {
-    new User  { Id = 1, Username = "test", Password = "test" }
+    new User  { Id = 1, Username = "Flash", Password = "Thunder" }
     };
 
     private readonly AppSettings _appSettings;
