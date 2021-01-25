@@ -232,6 +232,7 @@ DELETE./api/{component}/{id}
 {component} can be either "cats" or "dogs".
 
 Example 1: GET /api/cats/
+
 Example 2: GET /api/dogs/5
 
 __Path Parameters__
